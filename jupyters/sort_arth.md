@@ -238,15 +238,19 @@ print(output_list)
 基数排序
 既桶排序，将要排序的元素分布到桶中，
 """
-def bucket(lst):
-    buckets = [0] * ((max(lst) - min(lst))+1)
-    for i in range(len(lst)):
-        buckets[lst[i]-min(lst)] += 1
-    res=[]
-    for i in range(len(buckets)):
-        if buckets[i] != 0:
-            res += [i+min(lst)]*buckets[i]
-    return res
+max_size = 10000
+bucket = []
+for i in range(max_size):
+    bucket.append(0)
+    
+def bucket_sort(lists):
+    out_list = []
+    for item in lists:
+        bucket[item] = 1
+    for i in range(max_size):
+        if bucket[i] == 1:
+            out_list.append(i)
+    return out_list
 
 input_list = [7,5,8,1,4,3,55,91,30]
 output_list = []
@@ -254,25 +258,14 @@ output_list = bucket_sort(input_list)
 print(output_list)
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    <ipython-input-18-0e1f9c1802cd> in <module>()
-         15 input_list = [7,5,8,1,4,3,55,91,30]
-         16 output_list = []
-    ---> 17 output_list = bucket_sort(input_list)
-         18 print(output_list)
+    [1, 3, 4, 5, 7, 8, 30, 55, 91]
 
 
-    <ipython-input-13-fb2c83175c5d> in bucket_sort(lists, radix)
-         10     for i in range(1, k+1):
-         11         for j in lists:
-    ---> 12             bucket[j / (radix **(i-1)) % (radix ** i)].append(j)
-         13         del lists[:]
-         14         for z in bucket:
+
+```python
+
+```
 
 
-    TypeError: list indices must be integers or slices, not float
+ *some markdown* $\phi$
 
